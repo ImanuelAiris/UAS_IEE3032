@@ -1,0 +1,410 @@
+[
+    {
+        "id": "f05699c1ce18c591",
+        "type": "tab",
+        "label": "UAS_IEE3032_Smart_Farm",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0dbc2b1c8282283f",
+        "type": "inject",
+        "z": "f05699c1ce18c591",
+        "name": "Sistem Irigasi Otomatis",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "b42bc759c32874d9",
+                "1781637dc4851c1c",
+                "707f7b62a4285c84"
+            ]
+        ]
+    },
+    {
+        "id": "b42bc759c32874d9",
+        "type": "random",
+        "z": "f05699c1ce18c591",
+        "name": "Sensor Kelembaban Tanah",
+        "low": "0",
+        "high": "100",
+        "inte": "true",
+        "property": "payload",
+        "x": 500,
+        "y": 200,
+        "wires": [
+            [
+                "652a5608cc6312e0"
+            ]
+        ]
+    },
+    {
+        "id": "1781637dc4851c1c",
+        "type": "random",
+        "z": "f05699c1ce18c591",
+        "name": "Sensor pH Tanah",
+        "low": "0",
+        "high": "14",
+        "inte": "true",
+        "property": "payload",
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "e5d8d02d98bcd0a1"
+            ]
+        ]
+    },
+    {
+        "id": "707f7b62a4285c84",
+        "type": "random",
+        "z": "f05699c1ce18c591",
+        "name": "Sensor Suhu",
+        "low": "-10",
+        "high": "50",
+        "inte": "true",
+        "property": "payload",
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "279548e5a9d73c94"
+            ]
+        ]
+    },
+    {
+        "id": "652a5608cc6312e0",
+        "type": "mqtt out",
+        "z": "f05699c1ce18c591",
+        "name": "",
+        "topic": "sf/kelembaban",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "02cfe6d0d7982aee",
+        "x": 760,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e5d8d02d98bcd0a1",
+        "type": "mqtt out",
+        "z": "f05699c1ce18c591",
+        "name": "",
+        "topic": "sf/ph",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "02cfe6d0d7982aee",
+        "x": 730,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "279548e5a9d73c94",
+        "type": "mqtt out",
+        "z": "f05699c1ce18c591",
+        "name": "",
+        "topic": "sf/suhu",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "02cfe6d0d7982aee",
+        "x": 740,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "9a970d326634f81e",
+        "type": "mqtt in",
+        "z": "f05699c1ce18c591",
+        "name": "",
+        "topic": "sf/kelembaban",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "02cfe6d0d7982aee",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 760,
+        "y": 240,
+        "wires": [
+            [
+                "919ef703040f9e52",
+                "d07cdaab492df2e5"
+            ]
+        ]
+    },
+    {
+        "id": "0177ef8ef3107958",
+        "type": "mqtt in",
+        "z": "f05699c1ce18c591",
+        "name": "",
+        "topic": "sf/ph",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "02cfe6d0d7982aee",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "5fd332619cbfbb3d",
+                "9d13b4d9e94cc670"
+            ]
+        ]
+    },
+    {
+        "id": "d0e466e10131e15f",
+        "type": "mqtt in",
+        "z": "f05699c1ce18c591",
+        "name": "",
+        "topic": "sf/suhu",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "02cfe6d0d7982aee",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 730,
+        "y": 440,
+        "wires": [
+            [
+                "66b1fcbc87c4e26f",
+                "18a0a183278280d1"
+            ]
+        ]
+    },
+    {
+        "id": "919ef703040f9e52",
+        "type": "ui_gauge",
+        "z": "f05699c1ce18c591",
+        "name": "Sensor Kelembaban Tanah",
+        "group": "1144ee2b7319dc3f",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Sensor Kelembaban Tanah",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1020,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5fd332619cbfbb3d",
+        "type": "ui_gauge",
+        "z": "f05699c1ce18c591",
+        "name": "Sensor pH Tanah",
+        "group": "b305bdbd6fa9834e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Sensor pH Tanah",
+        "label": "pH",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "14",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 990,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "66b1fcbc87c4e26f",
+        "type": "ui_gauge",
+        "z": "f05699c1ce18c591",
+        "name": "Sensor Suhu",
+        "group": "884c2b029eae503e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Sensor Suhu",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 970,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d07cdaab492df2e5",
+        "type": "debug",
+        "z": "f05699c1ce18c591",
+        "name": "debug 33",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "9d13b4d9e94cc670",
+        "type": "debug",
+        "z": "f05699c1ce18c591",
+        "name": "debug 34",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "18a0a183278280d1",
+        "type": "debug",
+        "z": "f05699c1ce18c591",
+        "name": "debug 35",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "02cfe6d0d7982aee",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1144ee2b7319dc3f",
+        "type": "ui_group",
+        "name": "Sensor Kelembaban Tanah",
+        "tab": "819b7639ad124001",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b305bdbd6fa9834e",
+        "type": "ui_group",
+        "name": "Sensor pH Tanah",
+        "tab": "819b7639ad124001",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "884c2b029eae503e",
+        "type": "ui_group",
+        "name": "Sensor Suhu",
+        "tab": "819b7639ad124001",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "819b7639ad124001",
+        "type": "ui_tab",
+        "name": "Sistem Irigasi Otomatis",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
